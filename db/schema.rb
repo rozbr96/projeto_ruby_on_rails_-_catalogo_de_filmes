@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_14_203119) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_14_203243) do
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -25,4 +25,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_203119) do
     t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
+  create_table "nationalities", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_nationalities_on_country_id"
+    t.index ["name"], name: "index_nationalities_on_name", unique: true
+  end
+
+  add_foreign_key "nationalities", "countries"
 end
