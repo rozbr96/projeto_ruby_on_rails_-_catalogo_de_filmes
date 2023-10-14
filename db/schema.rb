@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_14_203434) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_14_204338) do
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -37,6 +37,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_203434) do
     t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
+  create_table "movies", force: :cascade do |t|
+    t.string "title", null: false
+    t.integer "release_year", null: false
+    t.text "synopsis", null: false
+    t.integer "origin_country_id", null: false
+    t.integer "length", null: false
+    t.integer "director_id", null: false
+    t.integer "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["director_id"], name: "index_movies_on_director_id"
+    t.index ["genre_id"], name: "index_movies_on_genre_id"
+    t.index ["origin_country_id"], name: "index_movies_on_origin_country_id"
+  end
+
   create_table "nationalities", force: :cascade do |t|
     t.string "name", null: false
     t.integer "country_id", null: false
@@ -48,5 +63,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_203434) do
 
   add_foreign_key "directors", "genres", column: "favorite_genre_id"
   add_foreign_key "directors", "nationalities"
+  add_foreign_key "movies", "countries", column: "origin_country_id"
+  add_foreign_key "movies", "directors"
+  add_foreign_key "movies", "genres"
   add_foreign_key "nationalities", "countries"
 end
