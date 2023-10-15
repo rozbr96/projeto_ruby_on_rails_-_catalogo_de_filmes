@@ -32,7 +32,9 @@
   </tfoot>
 <% end %>
 
-
-<h1 class="text-center">Diretores</h1>
-
-<%= render 'partials/tables' %>
+<%=
+  render partial: 'partials/listing_content',
+  :locals => {
+    :collection_name => 'Diretores'
+  }
+%>
