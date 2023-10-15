@@ -1,0 +1,54 @@
+
+<% content_for :table do %>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Ano</th>
+      <th>Lançado?</th>
+      <th>Pôster</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if movies.empty? %>
+      <tr>
+        <td colspan="5">Nenhum filme encontrado</td>
+      </tr>
+    <% else %>
+      <% movies.each do |movie| %>
+        <tr>
+          <td class="text-start"><%= movie.title %></td>
+          <td><%= movie.release_year %></td>
+          <td><%= movie.has_been_released ? 'Sim' : 'Não' %></td>
+          <td>
+            <% if movie.poster.attached? %>
+              <img src="<%= url_for(movie.poster.variant(:thumb)) %>"/>
+            <% else %>
+              Sem Pôster Anexado
+            <% end %>
+          </td>
+          <td>
+            <%= link_to movie_path movie do %>
+              <%= render 'partials/details_button' %>
+            <% end %>
+
+            <%= link_to edit_movie_path movie do %>
+              <%= render 'partials/edit_button' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <th>Título</th>
+      <th>Ano</th>
+      <th>Lançado?</th>
+      <th>Pôster</th>
+      <th>Ações</th>
+    </tr>
+  </tfoot>
+<% end %>
