@@ -43,6 +43,11 @@ class DirectorsController < ApplicationController
     end
   end
 
+  def show
+    @director = Director.find params[:id]
+    @movies = Movie.where director_id: params[:id]
+  end
+
   def update
     begin
       Director.find(params[:id]).update get_form_data
