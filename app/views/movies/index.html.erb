@@ -14,11 +14,11 @@
         <td class="text-start"><%= movie.title %></td>
         <td><%= movie.release_year %></td>
         <td>
-          <%= link_to genre_path movie do %>
+          <%= link_to movie_path movie do %>
             <%= render 'partials/details_button' %>
           <% end %>
 
-          <%= link_to edit_genre_path movie do %>
+          <%= link_to edit_movie_path movie do %>
             <%= render 'partials/edit_button' %>
           <% end %>
         </td>
@@ -40,6 +40,6 @@
   render partial: 'partials/listing_content',
   :locals => {
     :collection_name => 'Filmes',
-    :new_collection_item_path => new_director_path
+    :new_collection_item_path => new_movie_path
   }
 %>
