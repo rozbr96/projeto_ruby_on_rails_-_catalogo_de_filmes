@@ -8,19 +8,25 @@
   </thead>
 
   <tbody>
-    <% @directors.each do |director| %>
+    <% if @directors.empty? %>
       <tr>
-        <td class="text-start"><%= director.name %></td>
-        <td>
-          <%= link_to director_path director do %>
-            <%= render 'partials/details_button' %>
-          <% end %>
-
-          <%= link_to edit_director_path director do %>
-            <%= render 'partials/edit_button' %>
-          <% end %>
-        </td>
+        <td colspan="2">Nenhum diretor encontrado</td>
       </tr>
+    <% else %>
+      <% @directors.each do |director| %>
+        <tr>
+          <td class="text-start"><%= director.name %></td>
+          <td>
+            <%= link_to director_path director do %>
+              <%= render 'partials/details_button' %>
+            <% end %>
+
+            <%= link_to edit_director_path director do %>
+              <%= render 'partials/edit_button' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 
