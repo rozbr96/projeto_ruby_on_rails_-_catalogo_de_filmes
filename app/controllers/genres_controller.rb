@@ -19,6 +19,11 @@ class GenresController < ApplicationController
   def new
   end
 
+  def show
+    @genre = Genre.find params[:id]
+    @movies = Movie.where genre_id: params[:id]
+  end
+
   def update
     genre = Genre.find params[:id]
 

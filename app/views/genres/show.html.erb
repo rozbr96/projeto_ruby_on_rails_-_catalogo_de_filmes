@@ -1,0 +1,13 @@
+
+<%=
+  render partial: 'movies/listing', locals: {
+    movies: @movies
+  }
+%>
+
+<%=
+  render partial: 'partials/listing_content', locals: {
+    collection_name: "Filmes de #{@genre.name}",
+    new_collection_item_path: new_movie_path
+  }
+%>
