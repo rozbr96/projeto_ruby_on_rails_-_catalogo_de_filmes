@@ -1,0 +1,10 @@
+
+<%= form_with model: Genre.new do |form| %>
+  <%=
+    render partial: 'form',
+    locals: {
+      form: form,
+      submit_button_text: 'Criar Gênero'
+    }
+  %>
+<% end %>
