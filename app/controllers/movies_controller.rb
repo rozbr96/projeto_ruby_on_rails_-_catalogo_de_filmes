@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
       title: data[:title], length: data[:length],
       synopsis: data[:synopsis], release_year: data[:release_year],
       genre: genre, director: director, origin_country: country,
-      has_been_released: data[:has_been_released]
+      has_been_released: data[:has_been_released], poster: data[:poster]
     }
   end
 
