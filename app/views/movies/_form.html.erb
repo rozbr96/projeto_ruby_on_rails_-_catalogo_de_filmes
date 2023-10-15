@@ -52,11 +52,13 @@
         <div class="mx-auto">
           <label for="poster-selection" class="form-label poster-image-selection">
             <% if movie.nil? or not movie.poster.attached? %>
-              <span class="align-middle">
+              <img id="image-preview"/>
+
+              <span id="image-preview-fallback">
                 Selecione uma imagem para o Poster
               </span>
             <% else %>
-              <%= image_tag url_for(movie.poster) %>
+              <%= image_tag url_for(movie.poster), id: 'image-preview' %>
             <% end %>
           </label>
         </div>
@@ -86,3 +88,17 @@
     max-width: 35vw;
   }
 </style>
+
+<script>
+  document
+    .getElementById('poster-selection')
+    .addEventListener('change', function(event) {
+      const { target } = event
+      const { files } = target
+
+      if (!files.length) return
+
+      document.getElementById('image-preview').src = URL.createObjectURL(files[0])
+      document.getElementById('image-preview-fallback')?.remove()
+    })
+</script>
