@@ -2,5 +2,11 @@
 <div class="d-flex flex-column gap-3">
   <h1 class="text-center"><%= collection_name %></h1>
 
+  <div class="d-flex flex-row-reverse">
+    <%= link_to new_collection_item_path do %>
+      <%= render 'partials/create_button' %>
+    <% end %>
+  </div>
+
   <%= render 'partials/tables' %>
 </div>
