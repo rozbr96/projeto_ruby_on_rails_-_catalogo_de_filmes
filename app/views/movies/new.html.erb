@@ -1,0 +1,10 @@
+
+<%= form_with model: Movie.new do |form| %>
+  <%=
+    render partial: 'form', locals: {
+      form: form,
+      movie: nil,
+      submit_button_text: 'Registrar Filme'
+    }
+  %>
+<% end %>
