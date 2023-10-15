@@ -1,0 +1,41 @@
+
+<% content_for :table do %>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Ano</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td class="text-start"><%= movie.title %></td>
+        <td><%= movie.release_year %></td>
+        <td>
+          <%= link_to genre_path movie do %>
+            <%= render 'partials/details_button' %>
+          <% end %>
+
+          <%= link_to edit_genre_path movie do %>
+            <%= render 'partials/edit_button' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <th>Título</th>
+      <th>Ano</th>
+      <th>Ações</th>
+    </tr>
+  </tfoot>
+<% end %>
+
+
+<h1 class="text-center">Filmes</h1>
+
+<%= render 'partials/tables' %>
