@@ -1,0 +1,38 @@
+
+<% content_for :table do %>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @directors.each do |director| %>
+      <tr>
+        <td class="text-start"><%= director.name %></td>
+        <td>
+          <%= link_to director_path director do %>
+            <%= render 'partials/details_button' %>
+          <% end %>
+
+          <%= link_to edit_director_path director do %>
+            <%= render 'partials/edit_button' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <th>Nome</th>
+      <th>Ações</th>
+    </tr>
+  </tfoot>
+<% end %>
+
+
+<h1 class="text-center">Diretores</h1>
+
+<%= render 'partials/tables' %>
