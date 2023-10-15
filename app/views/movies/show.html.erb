@@ -1,0 +1,106 @@
+
+
+<%= form_with do |form| %>
+  <div class="d-flex flex-column gap-5">
+    <div class="row">
+      <div class="col d-flex flex-column gap-3">
+        <div class="d-flex flex-column">
+          <%= form.label 'Título:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.title %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'Gênero:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.genre.name %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'Duração:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.length %> minutos
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'Sinopse:', class: 'form-label' %>
+          <div class="form-control">
+            <%= @movie.synopsis %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'Ano de Lançamento:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.release_year %>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3">
+          <div class="form-check-reverse form-switch">
+            <%= form.label 'Já foi lançado?', class: 'form-label', for: 'has-been-released' %>
+            <%= @movie.has_been_released ? 'Sim' : 'Não' %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'Diretor:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.director.name %>, <%= @movie.director.nationality.name %>, prefere filmes de <%= @movie.director.favorite_genre.name %>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column">
+          <%= form.label 'País de Origem:', class: 'form-label' %>
+
+          <div class="form-control">
+            <%= @movie.origin_country.name %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="d-flex flex-column justify-content-center">
+          <%= form.label 'Poster', class: 'form-label text-center' %>
+
+          <div class="mx-auto">
+            <label class="form-label poster-image-selection">
+              <% if not @movie.poster.attached? %>
+                <span>
+                  Nenhum pôster anexado
+                </span>
+              <% else %>
+                <%= image_tag url_for(@movie.poster), id: 'image-preview' %>
+              <% end %>
+            </label>
+          </div>
+
+          <%= form.file_field :poster, class: 'invisible', id: 'poster-selection', accept: 'image/*' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<style>
+  .poster-image-selection {
+    border: 1px dotted var(--bs-dark-border-subtle);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 50px;
+  }
+
+  .poster-image-selection img {
+    max-height: 60vh;
+    max-width: 35vw;
+  }
+</style>

@@ -47,6 +47,10 @@ class MoviesController < ApplicationController
     @countries = Country.all.map { |country| [country.name, country.id] }
   end
 
+  def show
+    @movie = Movie.find params[:id]
+  end
+
   def update
     begin
       Movie.find(params[:id]).update get_form_data
