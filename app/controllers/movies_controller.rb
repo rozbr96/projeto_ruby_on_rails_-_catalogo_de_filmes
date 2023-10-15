@@ -21,13 +21,16 @@ class MoviesController < ApplicationController
     director = Director.find params[:director_id]
     genre = Genre.find params[:genre_id]
 
-
-    {
+    movie_data = {
       title: data[:title], length: data[:length],
       synopsis: data[:synopsis], release_year: data[:release_year],
       genre: genre, director: director, origin_country: country,
-      has_been_released: data[:has_been_released], poster: data[:poster]
+      has_been_released: data[:has_been_released]
     }
+
+    return movie_data if data[:poster].nil?
+
+    movie_data.update :poster => data[:poster]
   end
 
   def index
