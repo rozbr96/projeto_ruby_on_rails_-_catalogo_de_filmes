@@ -1,0 +1,35 @@
+
+<div class="d-flex flex-column gap-3">
+  <div class="d-flex flex-column">
+    <%= form.label 'Nome:', class: 'form-label' %>
+    <%= form.text_field :name, placeholder: 'Nome', class: 'form-control' %>
+  </div>
+
+  <div class="d-flex flex-column">
+    <%= form.label 'Nacionalidade:', class: 'form-label' %>
+    <%=
+      select_tag :nationality_id,
+      options_for_select(@nationalities, director ? director.nationality_id : 0),
+      class: 'form-control'
+    %>
+  </div>
+
+  <div class="d-flex flex-column">
+    <%= form.label 'Data de Nascimento:', class: 'form-label' %>
+    <%= form.date_field :birth_date, class: 'form-control' %>
+  </div>
+
+  <div class="d-flex flex-column">
+    <%= form.label 'Gênero Favorito:', class: 'form-label' %>
+    <%=
+      select_tag :favorite_genre_id,
+      options_for_select(@genres, director ? director.favorite_genre_id : 0),
+      class: 'form-control'
+    %>
+  </div>
+
+  <%=
+    form.submit director ? 'Salvar Alterações' : 'Registrar Diretor',
+    class: 'btn btn-primary'
+  %>
+</div>

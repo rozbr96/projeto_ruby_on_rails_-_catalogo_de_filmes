@@ -1,0 +1,9 @@
+
+<%= form_with model: Director.new do |form| %>
+  <%=
+    render partial: 'form', locals: {
+      form: form,
+      director: nil
+    }
+  %>
+<% end %>
